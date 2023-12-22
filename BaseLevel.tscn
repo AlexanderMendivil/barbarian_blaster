@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsmb5cowjy7pb"]
+[gd_scene load_steps=7 format=3 uid="uid://bsmb5cowjy7pb"]
 
 [ext_resource type="MeshLibrary" uid="uid://bbt1vnqt01aex" path="res://MeshLibraries/SpaceLibrary.tres" id="1_tr658"]
 
@@ -18,13 +18,21 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yahky"]
 albedo_color = Color(0.258824, 0.258824, 0.258824, 1)
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="Curve3D" id="Curve3D_t0uxe"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -22.9908, 0, 5.56411, -2, 0, 2, 2, 0, -2, 10.0092, 0, 5.56411, 1, 0, 0, -1, 0, 0, 10.0092, 0, -1.43589, 1, 0, 1, -1, 0, -1, -13.9908, 0, -1.43589, 0, 0, 0, 0, 0, 0, -13.9908, 0, -6.43589),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="BaseLevel" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.990763, 0, 0.435892)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qwkwb")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4, 5)
 material_override = SubResource("StandardMaterial3D_yahky")
 size = Vector3(100, 2, 100)
 
@@ -32,11 +40,57 @@ size = Vector3(100, 2, 100)
 mesh_library = ExtResource("1_tr658")
 cell_size = Vector3(4, 2, 4)
 data = {
-"cells": PackedInt32Array(65535, 65535, 655360, 65535, 65534, 655360, 65535, 0, 655360, 65535, 1, 655360, 65535, 2, 655360, 65534, 65535, 655360, 65533, 65535, 655360, 65532, 65535, 655360, 65531, 65535, 655360, 0, 65535, 655360, 1, 65535, 655360, 2, 65535, 655360, 3, 65535, 655360, 65531, 65534, 655360, 65531, 0, 655360, 65531, 1, 655360, 65531, 2, 655360, 65532, 65534, 655360, 65532, 0, 655360, 65532, 1, 655360, 65532, 2, 655360, 65533, 65534, 655360, 65533, 0, 655360, 65533, 1, 655360, 65533, 2, 655360, 65534, 65534, 655360, 65534, 0, 655360, 65534, 1, 655360, 65534, 2, 655360, 0, 65534, 655360, 0, 0, 655360, 0, 1, 655360, 0, 2, 655360, 1, 65534, 655360, 1, 0, 655360, 1, 1, 655360, 1, 2, 655360, 2, 65534, 655360, 2, 0, 655360, 2, 1, 655360, 2, 2, 655360, 3, 65534, 655360, 3, 0, 655360, 3, 1, 655360, 3, 2, 655360)
+"cells": PackedInt32Array(65535, 65534, 655360, 65535, 2, 655360, 65531, 65535, 655360, 3, 65535, 655360, 65531, 65534, 655360, 65531, 0, 655360, 65531, 2, 655360, 65532, 2, 655360, 65533, 65534, 655360, 65533, 2, 655360, 65534, 65534, 655360, 65534, 2, 655360, 0, 65534, 655360, 0, 2, 655360, 1, 65534, 655360, 1, 2, 655360, 2, 65534, 655360, 2, 2, 655360, 3, 65534, 655360, 3, 0, 655360, 3, 2, 655360, 3, 1, 655360, 1, 0, 655360, 65532, 0, 655360, 65533, 0, 655360, 65534, 0, 655360, 65535, 0, 655360, 0, 0, 655360)
 }
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0326842, 0.999466, 0, -0.999466, 0.0326842, -57.7587, 16.7389, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, -1, 14.5, 9.5)
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, -2, 14.5, 9.5)
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 5)
+curve = SubResource("Curve3D_t0uxe")
+
+[node name="Road" type="CSGPolygon3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21033, 3, -5.75257)
+polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="LeftEdge" type="CSGPolygon3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21033, 3, -5.75257)
+polygon = PackedVector2Array(-1.1, 0, -1.1, 0.15, -0.9, 0.15, -0.9, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="RightEdge2" type="CSGPolygon3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21033, 3, -5.75257)
+polygon = PackedVector2Array(0.9, 0, 0.9, 0.15, 1.1, 0.15, 1.1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
