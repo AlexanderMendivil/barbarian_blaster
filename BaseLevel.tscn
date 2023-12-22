@@ -22,6 +22,8 @@ environment = SubResource("Environment_qwkwb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(100, 2, 100)
 
+[node name="GridMap" type="GridMap" parent="CSGBox3D"]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0326842, 0.999466, 0, -0.999466, 0.0326842, -57.7587, 16.7389, 0)
 
