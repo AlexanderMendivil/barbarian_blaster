@@ -6,7 +6,7 @@
 radius = 1.0
 height = 3.0
 
-[node name="Enemy" type="PathFollow3D"]
+[node name="Enemy" type="PathFollow3D" groups=["ENEMY"]]
 transform = Transform3D(-4.3711e-08, 0, -0.99999, 0, 1, 0, 0.99999, 0, -4.3711e-08, 0, 0, 0)
 loop = false
 script = ExtResource("1_gjevr")

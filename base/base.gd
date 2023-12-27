@@ -1,5 +1,6 @@
 extends Node3D
-# Called when the node enters the scene tree for the first time.
+
+var Groups = preload("res://utils/groups.gd")
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -11,4 +12,3 @@ func _process(delta: float) -> void:
 
 func take_damage() -> void:
 	print("hit itttt")
-	pass
