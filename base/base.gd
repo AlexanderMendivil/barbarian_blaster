@@ -1,14 +1,16 @@
 extends Node3D
 
-var Groups = preload("res://utils/groups.gd")
+@export var max_health: int = 5
+@onready var label_3d: Label3D = $Label3D
+
 func _ready() -> void:
-	pass # Replace with function body.
+	label_3d.text = str(max_health)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
 func take_damage() -> void:
-	print("hit itttt")
+	if max_health != 0:
+		max_health -= 1 
+		label_3d.text = str(max_health)

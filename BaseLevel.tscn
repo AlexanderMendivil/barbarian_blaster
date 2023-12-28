@@ -36,7 +36,7 @@ environment = SubResource("Environment_qwkwb")
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 5)
 material_override = SubResource("StandardMaterial3D_yahky")
-size = Vector3(100, 2, 100)
+size = Vector3(150, 2, 100)
 
 [node name="GridMap" type="GridMap" parent="CSGBox3D"]
 mesh_library = ExtResource("1_tr658")
@@ -49,7 +49,7 @@ data = {
 transform = Transform3D(1, 0, 0, 0, 0.0326842, 0.999466, 0, -0.999466, 0.0326842, -57.7587, 16.7389, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 12.5, 14.5962)
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 20.5, 14.5962)
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 5)
@@ -101,3 +101,4 @@ path_joined = false
 transform = Transform3D(-4.3711e-08, 0, -0.99999, 0, 1, 0, 0.99999, 0, -4.3711e-08, -22.9908, 0, 5.56411)
 
 [node name="Base" parent="." instance=ExtResource("3_bkals")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3362, 2.81641, -3)

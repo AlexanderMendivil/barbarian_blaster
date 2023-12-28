@@ -10,10 +10,8 @@ height = 3.0
 transform = Transform3D(-4.3711e-08, 0, -0.99999, 0, 1, 0, 0.99999, 0, -4.3711e-08, 0, 0, 0)
 loop = false
 script = ExtResource("1_gjevr")
+speed = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.999999, 0, 3.19744e-14, 0, 1, 0, -3.19744e-14, 0, 0.999999, -0.034, 1.5, 0)
 mesh = SubResource("CapsuleMesh_fcg1f")
-
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
