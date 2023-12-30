@@ -1,10 +1,10 @@
 extends PathFollow3D
 
 @export var speed: float = 2.5
-var Groups = preload("res://utils/groups.gd")
 
-@onready var base = get_tree().get_first_node_in_group("BASE")
+@onready var base
 func _ready() -> void:
+	base = get_tree().get_first_node_in_group("BASE")
 	pass # Replace with function body.
 
 

@@ -22,5 +22,4 @@ func _process(_delta: float) -> void:
 
 
 func take_damage() -> void:
-	if max_health != 0:
-		currentHealth -= 1 
+	currentHealth -= 1 

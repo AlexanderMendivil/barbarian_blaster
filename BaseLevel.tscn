@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsmb5cowjy7pb"]
+[gd_scene load_steps=10 format=3 uid="uid://bsmb5cowjy7pb"]
 
 [ext_resource type="MeshLibrary" uid="uid://bbt1vnqt01aex" path="res://MeshLibraries/SpaceLibrary.tres" id="1_tr658"]
 [ext_resource type="PackedScene" uid="uid://khatafrsgmys" path="res://enemy/enemy.tscn" id="2_0dfw4"]
+[ext_resource type="PackedScene" uid="uid://bl18ugrt11nne" path="res://RayPickerCamera/ray_picker_camera.tscn" id="2_v40uh"]
 [ext_resource type="PackedScene" uid="uid://df230gthdwxye" path="res://base/base.tscn" id="3_bkals"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4e8wf"]
@@ -48,15 +49,14 @@ data = {
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0326842, 0.999466, 0, -0.999466, 0.0326842, -57.7587, 16.7389, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 20.5, 14.5962)
+[node name="RayPickerCamera" parent="." instance=ExtResource("2_v40uh")]
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 5)
 curve = SubResource("Curve3D_t0uxe")
 
 [node name="Road" type="CSGPolygon3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21, -1, -5.753)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, -1, -5.7)
 polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
 mode = 2
 path_node = NodePath("..")
@@ -70,7 +70,7 @@ path_u_distance = 1.0
 path_joined = false
 
 [node name="LeftEdge" type="CSGPolygon3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21, -1, -5.753)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, -1, -5.7)
 polygon = PackedVector2Array(-1.1, 0, -1.1, 0.15, -0.9, 0.15, -0.9, 0)
 mode = 2
 path_node = NodePath("..")
@@ -84,7 +84,7 @@ path_u_distance = 1.0
 path_joined = false
 
 [node name="RightEdge2" type="CSGPolygon3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21, -1, -5.753)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, -1, -5.7)
 polygon = PackedVector2Array(0.9, 0, 0.9, 0.15, 1.1, 0.15, 1.1, 0)
 mode = 2
 path_node = NodePath("..")
@@ -105,7 +105,7 @@ transform = Transform3D(-0.052919, 0, -0.998589, 0, 1, 0, 0.998589, 0, -0.052919
 progress = 5.0
 
 [node name="Enemy3" parent="Path3D" instance=ExtResource("2_0dfw4")]
-transform = Transform3D(-0.0441235, 0, -0.999016, 0, 1, 0, 0.999016, 0, -0.0441235, -13.0051, 0, 6.09462)
+transform = Transform3D(-0.0441234, 0, -0.999016, 0, 1, 0, 0.999016, 0, -0.0441234, -13.0051, 0, 6.09462)
 progress = 10.0
 
 [node name="Enemy4" parent="Path3D" instance=ExtResource("2_0dfw4")]
