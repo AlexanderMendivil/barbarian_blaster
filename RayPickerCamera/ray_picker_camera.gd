@@ -1,6 +1,7 @@
 extends Camera3D
 
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
+@export  var turret_manager: Node3D
 
 func _process(_delta: float) -> void:
 	var mouse_position:Vector2 = get_viewport().get_mouse_position()
@@ -17,6 +18,7 @@ func _process(_delta: float) -> void:
 			var cell = collider.local_to_map(collision_point)
 			if  collider.get_cell_item(cell) == 0:
 				collider.set_cell_item(cell, 1)
+				turret_manager.build_turret(collider.map_to_local(cell))
 	else:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 

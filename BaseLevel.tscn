@@ -50,7 +50,8 @@ data = {
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0326842, 0.999466, 0, -0.999466, 0.0326842, -57.7587, 16.7389, 0)
 
-[node name="RayPickerCamera" parent="." instance=ExtResource("2_v40uh")]
+[node name="RayPickerCamera" parent="." node_paths=PackedStringArray("turret_manager") instance=ExtResource("2_v40uh")]
+turret_manager = NodePath("../TurretManager")
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 1, -0.2)
