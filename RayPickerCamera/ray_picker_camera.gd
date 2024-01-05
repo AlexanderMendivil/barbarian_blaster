@@ -6,8 +6,6 @@ extends Camera3D
 func _process(_delta: float) -> void:
 	var mouse_position:Vector2 = get_viewport().get_mouse_position()
 	ray_cast_3d.target_position = project_local_ray_normal(mouse_position) * 100.0
-	print(mouse_position)
-	print(ray_cast_3d.target_position)
 	ray_cast_3d.force_raycast_update()
 	
 	if ray_cast_3d.is_colliding():
