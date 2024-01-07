@@ -1,15 +1,17 @@
 extends Node3D
 
-
+@onready var barrel: MeshInstance3D = $TurretBase/CannonBase/Barrel
 @export var projectile: PackedScene
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	var bullet = projectile.instantiate()
-	bullet.position = position
-	add_child(bullet)
+	pass
 	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_timer_timeout():
+	var bullet = projectile.instantiate()
+	add_child(bullet)
+	bullet.global_position = barrel.global_position
