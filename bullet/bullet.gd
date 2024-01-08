@@ -2,7 +2,6 @@ extends Area3D
 
 
 var direction := Vector3.FORWARD
-
 @export var speed := 30.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
