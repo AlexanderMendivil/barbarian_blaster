@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfvnawnts2y51"]
+[gd_scene load_steps=10 format=3 uid="uid://dfvnawnts2y51"]
 
 [ext_resource type="Script" path="res://turret/turret.gd" id="1_jf5xm"]
 [ext_resource type="PackedScene" uid="uid://cxsg6pv2v1fec" path="res://bullet/bullet.tscn" id="1_slubo"]
@@ -19,6 +19,42 @@ top_radius = 0.01
 bottom_radius = 0.1
 height = 1.5
 
+[sub_resource type="Animation" id="Animation_rq7nv"]
+resource_name = "recoil"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.5), Vector3(0, 0, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_yblk3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3kdw"]
+_data = {
+"RESET": SubResource("Animation_yblk3"),
+"recoil": SubResource("Animation_rq7nv")
+}
+
 [node name="Turret" type="Node3D"]
 script = ExtResource("1_jf5xm")
 projectile = ExtResource("1_slubo")
@@ -38,6 +74,11 @@ mesh = SubResource("BoxMesh_q0rim")
 [node name="Barrel" type="MeshInstance3D" parent="TurretBase/CannonBase"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.5)
 mesh = SubResource("CylinderMesh_lc1m8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TurretBase/CannonBase/Barrel"]
+libraries = {
+"": SubResource("AnimationLibrary_b3kdw")
+}
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
