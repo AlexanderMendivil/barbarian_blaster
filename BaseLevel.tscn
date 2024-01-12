@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsmb5cowjy7pb"]
+[gd_scene load_steps=15 format=3 uid="uid://bsmb5cowjy7pb"]
 
 [ext_resource type="MeshLibrary" uid="uid://bbt1vnqt01aex" path="res://MeshLibraries/SpaceLibrary.tres" id="1_tr658"]
 [ext_resource type="PackedScene" uid="uid://khatafrsgmys" path="res://enemy/enemy.tscn" id="2_0dfw4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://EnemyPath.gd" id="3_uv7hv"]
 [ext_resource type="Script" path="res://TurretManager.gd" id="5_jv8at"]
 [ext_resource type="PackedScene" uid="uid://dfvnawnts2y51" path="res://turret/turret.tscn" id="6_x1pfu"]
+[ext_resource type="Script" path="res://Bank.gd" id="8_k2p1j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4e8wf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,6 +31,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_b2p8y"]
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseLevel" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.990763, 0, 0.435892)
@@ -114,5 +120,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9362, 2.81641, -8.2)
 script = ExtResource("5_jv8at")
 turret = ExtResource("6_x1pfu")
 enemy_path = NodePath("../EnemyPath")
+
+[node name="Bank" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("8_k2p1j")
+
+[node name="Label" type="Label" parent="Bank"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Placeholder text"
+label_settings = SubResource("LabelSettings_b2p8y")
 
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="spawn_enemies"]
