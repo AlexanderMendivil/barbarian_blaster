@@ -3,10 +3,9 @@ extends Area3D
 
 var direction := Vector3.FORWARD
 @export var speed := 30.0
-@onready var enemy
 
 func _ready() -> void:
-	enemy = get_tree().get_first_node_in_group("ENEMY_AREA")
+	pass
 
 func _physics_process(delta):
 	position += (direction * speed) * delta
@@ -19,8 +18,5 @@ func _on_timer_timeout():
 
 func _on_area_entered(area:Area3D):
 	if area.is_in_group('ENEMY_AREA'):
-		var parent = enemy.get_parent()
-		parent.damage(10)
-		if is_instance_valid(enemy):
-			queue_free()
-	pass # Replace with function body.
+		area.get_parent().damage(10)
+		queue_free()

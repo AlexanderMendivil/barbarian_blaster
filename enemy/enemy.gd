@@ -14,7 +14,7 @@ var current_health: int:
 
 		current_health = health_in
 		if current_health < 1:
-			bank.gold += max_gold_earned
+			bank.gold += 100
 			queue_free()
 
 func _ready() -> void:

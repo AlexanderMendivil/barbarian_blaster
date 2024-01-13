@@ -1,6 +1,6 @@
 extends MarginContainer
 
-@export var starting_gold := 150
+@export var starting_gold := 1500
 @onready var label: Label = $Label
 var gold : int:
 	set(gold_in):
