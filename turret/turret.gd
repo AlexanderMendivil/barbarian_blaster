@@ -22,7 +22,6 @@ func _physics_process(_delta):
 	
 	
 func _on_timer_timeout():
-	
 	if global_enemy:
 		var bullet = projectile.instantiate()
 		animation_player.play("recoil")

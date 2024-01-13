@@ -19,8 +19,8 @@ func _on_timer_timeout():
 
 func _on_area_entered(area:Area3D):
 	if area.is_in_group('ENEMY_AREA'):
-		print(enemy)
-		queue_free()
 		var parent = enemy.get_parent()
 		parent.damage(10)
+		if is_instance_valid(enemy):
+			queue_free()
 	pass # Replace with function body.
