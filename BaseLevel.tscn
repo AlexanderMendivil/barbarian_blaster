@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsmb5cowjy7pb"]
+[gd_scene load_steps=16 format=3 uid="uid://bsmb5cowjy7pb"]
 
 [ext_resource type="MeshLibrary" uid="uid://bbt1vnqt01aex" path="res://MeshLibraries/SpaceLibrary.tres" id="1_tr658"]
 [ext_resource type="PackedScene" uid="uid://khatafrsgmys" path="res://enemy/enemy.tscn" id="2_0dfw4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://TurretManager.gd" id="5_jv8at"]
 [ext_resource type="PackedScene" uid="uid://dfvnawnts2y51" path="res://turret/turret.tscn" id="6_x1pfu"]
 [ext_resource type="Script" path="res://Bank.gd" id="8_k2p1j"]
+[ext_resource type="PackedScene" uid="uid://cagtnhpbvv834" path="res://managers/difficulty_manager.tscn" id="9_c8jw6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4e8wf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -61,11 +62,12 @@ transform = Transform3D(1, 0, 0, 0, 0.0326842, 0.999466, 0, -0.999466, 0.0326842
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 20, 18.6)
 turret_manager = NodePath("../TurretManager")
 
-[node name="EnemyPath" type="Path3D" parent="."]
+[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("difficulty_manager")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 1, -0.2)
 curve = SubResource("Curve3D_t0uxe")
 script = ExtResource("3_uv7hv")
 enemy_scene = ExtResource("2_0dfw4")
+difficulty_manager = NodePath("../DifficultyManager")
 
 [node name="Road" type="CSGPolygon3D" parent="EnemyPath"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, -1, -0.499999)
@@ -140,5 +142,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Placeholder text"
 label_settings = SubResource("LabelSettings_b2p8y")
+
+[node name="DifficultyManager" parent="." instance=ExtResource("9_c8jw6")]
 
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="spawn_enemies"]

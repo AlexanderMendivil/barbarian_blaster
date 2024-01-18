@@ -14,7 +14,7 @@ var current_health: int:
 
 		current_health = health_in
 		if current_health < 1:
-			bank.gold += 100
+			bank.gold += max_gold_earned
 			queue_free()
 
 func _ready() -> void:
@@ -22,7 +22,6 @@ func _ready() -> void:
 	current_health = max_health
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	progress += (delta * speed)
 	if progress_ratio == 1:
