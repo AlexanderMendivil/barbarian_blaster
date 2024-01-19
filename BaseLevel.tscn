@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bsmb5cowjy7pb"]
+[gd_scene load_steps=17 format=3 uid="uid://bsmb5cowjy7pb"]
 
 [ext_resource type="MeshLibrary" uid="uid://bbt1vnqt01aex" path="res://MeshLibraries/SpaceLibrary.tres" id="1_tr658"]
 [ext_resource type="PackedScene" uid="uid://khatafrsgmys" path="res://enemy/enemy.tscn" id="2_0dfw4"]
@@ -37,6 +37,12 @@ point_count = 5
 font_size = 64
 outline_size = 16
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_q5he3"]
+min_value = 10.0
+max_value = 150.0
+_data = [Vector2(0, 10), 0.0, 140.0, 0, 1, Vector2(1, 150), 140.0, 0.0, 1, 0]
+point_count = 2
 
 [node name="BaseLevel" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.990763, 0, 0.435892)
@@ -117,6 +123,7 @@ autostart = true
 
 [node name="Base" parent="." instance=ExtResource("3_bkals")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9362, 2.81641, -8.2)
+max_health = 50
 
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("5_jv8at")
@@ -144,5 +151,7 @@ text = "Placeholder text"
 label_settings = SubResource("LabelSettings_b2p8y")
 
 [node name="DifficultyManager" parent="." instance=ExtResource("9_c8jw6")]
+health_increase_curve = SubResource("Curve_q5he3")
 
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="spawn_enemies"]
+[connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]
