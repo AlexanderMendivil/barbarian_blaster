@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bsmb5cowjy7pb"]
+[gd_scene load_steps=18 format=3 uid="uid://bsmb5cowjy7pb"]
 
 [ext_resource type="MeshLibrary" uid="uid://bbt1vnqt01aex" path="res://MeshLibraries/SpaceLibrary.tres" id="1_tr658"]
 [ext_resource type="PackedScene" uid="uid://khatafrsgmys" path="res://enemy/enemy.tscn" id="2_0dfw4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dfvnawnts2y51" path="res://turret/turret.tscn" id="6_x1pfu"]
 [ext_resource type="Script" path="res://Bank.gd" id="8_k2p1j"]
 [ext_resource type="PackedScene" uid="uid://cagtnhpbvv834" path="res://managers/difficulty_manager.tscn" id="9_c8jw6"]
+[ext_resource type="PackedScene" uid="uid://8k60wg2t1hb5" path="res://victoryScreen/victory_layer.tscn" id="10_j1mme"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4e8wf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -154,16 +155,7 @@ label_settings = SubResource("LabelSettings_b2p8y")
 [node name="DifficultyManager" parent="." instance=ExtResource("9_c8jw6")]
 health_increase_curve = SubResource("Curve_q5he3")
 
-[node name="VictoryLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="VictoryLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.588235)
+[node name="VictoryLayer" parent="." instance=ExtResource("10_j1mme")]
 
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="spawn_enemies"]
 [connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]
