@@ -144,6 +144,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 script = ExtResource("8_k2p1j")
+starting_gold = 15000
 
 [node name="Label" type="Label" parent="Bank"]
 layout_mode = 2
@@ -156,6 +157,7 @@ label_settings = SubResource("LabelSettings_b2p8y")
 health_increase_curve = SubResource("Curve_q5he3")
 
 [node name="VictoryLayer" parent="." instance=ExtResource("10_j1mme")]
+visible = false
 
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="spawn_enemies"]
 [connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]
