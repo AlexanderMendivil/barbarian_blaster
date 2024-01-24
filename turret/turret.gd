@@ -1,9 +1,9 @@
 extends Node3D
 
-@onready var barrel: MeshInstance3D = $TurretBase/CannonBase/Barrel
+@onready var barrel: Node3D = $TurretBase/Cannon
 @export var projectile: PackedScene
 @export var turret_range := 10.0
-@onready var animation_player: AnimationPlayer =$TurretBase/CannonBase/Barrel/AnimationPlayer
+@onready var animation_player: AnimationPlayer =$TurretBase/Cannon/AnimationPlayer
 var enemy_path: Path3D
 var global_enemy: PathFollow3D
 func _ready():
@@ -17,17 +17,17 @@ func _process(_delta):
 func _physics_process(_delta):
 	global_enemy = find_best_target()
 	if global_enemy:
-		look_at(global_enemy.global_position, Vector3.UP, true)
+		barrel.look_at(global_enemy.global_position, Vector3.UP, true)
 
 	
 	
 func _on_timer_timeout():
 	if global_enemy:
 		var bullet = projectile.instantiate()
-		animation_player.play("recoil")
 		add_child(bullet)
 		bullet.global_position = barrel.global_position
-		bullet.direction = global_transform.basis.z
+		bullet.direction = barrel.global_transform.basis.z
+		animation_player.play("recoil")
 
 func find_best_target() -> PathFollow3D:
 	var best_target = null

@@ -1,25 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfvnawnts2y51"]
+[gd_scene load_steps=8 format=3 uid="uid://dfvnawnts2y51"]
 
 [ext_resource type="Script" path="res://turret/turret.gd" id="1_jf5xm"]
 [ext_resource type="PackedScene" uid="uid://cxsg6pv2v1fec" path="res://bullet/bullet.tscn" id="1_slubo"]
+[ext_resource type="PackedScene" uid="uid://b0w0j24aejf6a" path="res://assets/TurretBase.glb" id="3_fe4xy"]
+[ext_resource type="PackedScene" uid="uid://d01rnwhtepvdd" path="res://assets/Cannon.glb" id="4_rk8rh"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_2ibtt"]
-height = 1.0
+[sub_resource type="Animation" id="Animation_hl7i5"]
+resource_name = "recoil"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.2, 0), Vector3(0, 2.2, 0.5)]
+}
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_14u30"]
-top_radius = 0.6
-bottom_radius = 0.6
-height = 0.6
-
-[sub_resource type="BoxMesh" id="BoxMesh_q0rim"]
-size = Vector3(0.3, 0.2, 0.5)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_lc1m8"]
-top_radius = 0.01
-bottom_radius = 0.1
-height = 1.5
-
-[sub_resource type="Animation" id="Animation_yblk3"]
+[sub_resource type="Animation" id="Animation_6kd0c"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -31,56 +33,30 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0.5)]
+"values": [Vector3(0, 2.2, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_rq7nv"]
-resource_name = "recoil"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0.5), Vector3(0, 0, 0.2)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3kdw"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qgeam"]
 _data = {
-"RESET": SubResource("Animation_yblk3"),
-"recoil": SubResource("Animation_rq7nv")
+"RESET": SubResource("Animation_6kd0c"),
+"recoil": SubResource("Animation_hl7i5")
 }
 
 [node name="Turret" type="Node3D"]
 script = ExtResource("1_jf5xm")
 projectile = ExtResource("1_slubo")
 
-[node name="TurretBase" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-mesh = SubResource("CylinderMesh_2ibtt")
-
-[node name="TurretTop" type="MeshInstance3D" parent="TurretBase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-mesh = SubResource("CylinderMesh_14u30")
-
-[node name="CannonBase" type="MeshInstance3D" parent="TurretBase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0.7)
-mesh = SubResource("BoxMesh_q0rim")
-
-[node name="Barrel" type="MeshInstance3D" parent="TurretBase/CannonBase"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.5)
-mesh = SubResource("CylinderMesh_lc1m8")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TurretBase/CannonBase/Barrel"]
-libraries = {
-"": SubResource("AnimationLibrary_b3kdw")
-}
-
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="TurretBase" parent="." instance=ExtResource("3_fe4xy")]
+
+[node name="Cannon" parent="TurretBase" instance=ExtResource("4_rk8rh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TurretBase/Cannon"]
+libraries = {
+"": SubResource("AnimationLibrary_qgeam")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

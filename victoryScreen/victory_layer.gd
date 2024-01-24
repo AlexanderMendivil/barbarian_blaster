@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-@onready var start_1: TextureRect = %Start1
 @onready var start_2: TextureRect = %Start2
 @onready var start_3: TextureRect = %Start3
 @onready var health_label: Label = %HealthLabel
