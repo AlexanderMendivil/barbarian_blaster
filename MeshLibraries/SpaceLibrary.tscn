@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cur1pv153txoy"]
+[gd_scene load_steps=8 format=3 uid="uid://cur1pv153txoy"]
 
-[ext_resource type="PackedScene" uid="uid://cq4e4y4ro07x3" path="res://assets/Tree.glb" id="1_jkdhy"]
-[ext_resource type="PackedScene" uid="uid://cq4e4y4ro07x3" path="res://assets/Rocks.glb" id="2_tyeva"]
+[ext_resource type="PackedScene" uid="uid://cq4e4y4ro07x3" path="res://assets/Tree.glb" id="2_tyeva"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnka0"]
 blend_mode = 1
@@ -43,6 +42,6 @@ mesh = SubResource("BoxMesh_omh03")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TurretBase/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ne1q0")
 
-[node name="Tree" parent="." instance=ExtResource("1_jkdhy")]
+[node name="Tree" parent="." instance=ExtResource("2_tyeva")]
 
 [node name="Rocks" parent="." instance=ExtResource("2_tyeva")]

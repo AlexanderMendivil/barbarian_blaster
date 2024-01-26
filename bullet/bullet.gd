@@ -3,6 +3,7 @@ extends Area3D
 
 var direction := Vector3.FORWARD
 @export var speed := 30.0
+@export var damage := 25.0
 
 func _ready() -> void:
 	pass
@@ -18,5 +19,5 @@ func _on_timer_timeout():
 
 func _on_area_entered(area:Area3D):
 	if area.is_in_group('ENEMY_AREA'):
-		area.get_parent().damage(10)
+		area.get_parent().damage(damage)
 		queue_free()
